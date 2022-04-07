@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- release v4.3.9, copyright 2014 - 2017 Kartik Visweswaran -->
+<!--suppress JSUnresolvedLibraryURL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="themes/explorer/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <script src="js/locales/es.js" type="text/javascript"></script>
+
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+    <body>
+        <div class="container kv-main">
+            <form enctype="multipart/form-data">
+            	<input id="folio" value="xxxxx" name="folio"><br>
+                <label class="control-label">Seleccionar Archivo</label>
+                <input id="file-es" name="file-es[]" type="file" multiple class="file-loading">
+            </form>
+        </div>
+    </body>
+	<script>
+    $(document).ready(function() {
+
+        $('#file-es').fileinput({
+            language: 'es',
+            showCaption: false,
+            maxFileCount: 1,
+            uploadUrl: '../../UploadServletFile',
+            allowedFileExtensions : ['png'],
+            uploadExtraData: function() {
+                return {
+                    folio: $("#folio").val(),
+                };  
+            }  
+        });  
+        
+    });
+	</script>
+</html>
